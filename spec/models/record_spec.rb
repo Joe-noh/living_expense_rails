@@ -40,8 +40,8 @@ describe Record do
 
   describe "in_out" do
     it "should be :outgoing or :incoming" do
-      normals   = [:outgoing, :incoming]
-      abnormals = [:outgo, :income, " "]
+      normals   = [:outgoing, "incoming"]
+      abnormals = [:outgo, "income"]
 
       normals.each do |in_out|
         record.in_out = in_out
@@ -49,8 +49,7 @@ describe Record do
       end
 
       abnormals.each do |in_out|
-        record.in_out = in_out
-        expect(record).not_to be_valid
+        expect { record.in_out = in_out }.to raise_error
       end
     end
   end
