@@ -12,11 +12,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-group :development do
-  gem 'spring'
-end
-
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'capybara'
+  gem 'spring'
 end

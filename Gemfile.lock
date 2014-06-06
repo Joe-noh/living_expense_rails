@@ -146,7 +146,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.1.1)
-  rspec-rails
+  rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   spring
   sqlite3
