@@ -1,3 +1,1 @@
-<%= form_for(@record) do |f| %>
-  <%= f.text_field :purpose %>
-<% end %>
+<%= render partial: "records/form", locals: { record: record } %>

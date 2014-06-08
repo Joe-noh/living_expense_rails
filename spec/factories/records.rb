@@ -4,5 +4,9 @@ FactoryGirl.define do
     responsible "jhonzawa"
     payday      Date.today
     in_out      "outgoing"
+
+    after(:build) do |rec|
+      3.times { rec.items << build(:item, record: rec) }
+    end
   end
 end

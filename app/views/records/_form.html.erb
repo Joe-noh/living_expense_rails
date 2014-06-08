@@ -1,0 +1,12 @@
+<%= form_for(record) do |f| %>
+  <%= f.label :purpose %>
+  <%= f.text_field :purpose %>
+
+  <%= f.label :responsible %>
+  <%= f.text_field :responsible %>
+
+  <%= f.label :payday %>
+  <%= f.date_field :payday %>
+
+  <%= f.submit %>
+<% end %>
