@@ -1,12 +1,7 @@
 require 'rails_helper'
 
 describe Record do
-  let(:record) do
-    Record.new(purpose:     "BBQ Party",
-               responsible: "jhonzawa",
-               payday:      Date.today,
-               in_out:      :outgoing)
-  end
+  let(:record) { FactoryGirl.create(:record) }
 
   subject { record }
 
@@ -40,8 +35,8 @@ describe Record do
 
   describe "in_out" do
     it "should be :outgoing or :incoming" do
-      normals   = [:outgoing, "incoming"]
-      abnormals = [:outgo, "income"]
+      normals   = ["outgoing", "incoming"]
+      abnormals = ["outgo", :incoming]
 
       normals.each do |in_out|
         record.in_out = in_out
@@ -49,7 +44,8 @@ describe Record do
       end
 
       abnormals.each do |in_out|
-        expect { record.in_out = in_out }.to raise_error
+        record.in_out = in_out
+        expect(record).not_to be_valid
       end
     end
   end
