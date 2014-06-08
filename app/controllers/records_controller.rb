@@ -9,7 +9,9 @@ class RecordsController < ApplicationController
     @record.items.build
 
     respond_to do |format|
-      format.html if request.xhr?
+      if request.xhr?
+        format.html { render "new", locals: { record: @record } }
+      end
     end
   end
 
@@ -17,7 +19,9 @@ class RecordsController < ApplicationController
     @record = Record.find(params[:id])
 
     respond_to do |format|
-      format.html if request.xhr?
+      if request.xhr?
+        format.html { render "new", locals: { record: @record } }
+      end
     end
   end
 
