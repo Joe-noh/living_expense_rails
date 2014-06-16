@@ -8,5 +8,8 @@
   <%= f.label :payday %>
   <%= f.date_field :payday %>
 
+  <%= f.label :in_out %>
+  <%= f.select :in_out, ['outgoing', 'incoming'] %>
+
   <%= f.submit %>
 <% end %>

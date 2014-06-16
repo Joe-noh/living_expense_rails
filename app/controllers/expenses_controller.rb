@@ -9,14 +9,10 @@ class ExpensesController < ApplicationController
   def new
     @expense = Expense.new
     @expense.items.build
-
-    render "new", locals: { expense: @expense }
   end
 
   def edit
     @expense = Expense.find(params[:id])
-
-    render "edit", locals: { expense: @expense }
   end
 
   def create
