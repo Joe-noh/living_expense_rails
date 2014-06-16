@@ -1,6 +1,6 @@
 class Expense < ActiveRecord::Base
   has_many :items
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :items, reject_if: :all_blank
 
   validates :purpose,     presence: true
   validates :responsible, presence: true,
