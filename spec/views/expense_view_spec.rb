@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "view" do
 
-  let(:expense) { FactoryGirl.create :expense }
+  before { @expense = FactoryGirl.create(:expense) }
 
   describe "expenses/index" do
 
@@ -23,17 +23,17 @@ describe "view" do
 
   describe "expenses/_expense" do
 
-    before { render partial: "expenses/expense", locals: { expense: expense } }
+    before { render partial: "expenses/expense", locals: { expense: @expense } }
 
     it "should render attributes of the expense" do
-      expect(rendered).to include expense.purpose
-      expect(rendered).to include expense.responsible
+      expect(rendered).to include @expense.purpose
+      expect(rendered).to include @expense.responsible
     end
   end
 
   describe "expenses/new" do
 
-    before { render template: "expenses/new", locals: { expense: expense } }
+    before { render template: "expenses/new" }
 
     it "should render partial 'expenses/_form'" do
       expect(view).to render_template partial: "_form"
@@ -42,7 +42,7 @@ describe "view" do
 
   describe "expenses/edit" do
 
-    before { render template: "expenses/edit", locals: { expense: expense } }
+    before { render template: "expenses/edit" }
 
     it "should render partial 'expenses/_form'" do
       expect(view).to render_template partial: "_form"
@@ -51,7 +51,7 @@ describe "view" do
 
   describe "expenses/_form" do
 
-    before { render partial: "expenses/form", locals: { expense: expense } }
+    before { render partial: "expenses/form", locals: { expense: @expense } }
 
     it "should have several input forms" do
       expect(rendered).to include "Purpose"
@@ -64,11 +64,11 @@ describe "view" do
 
   describe "expenses/show" do
 
-    before { render template: "expenses/show", locals: { expense: expense } }
+    before { render template: "expenses/show" }
 
     it "should contain expense information" do
-      expect(rendered).to include expense.purpose
-      expect(rendered).to include expense.responsible
+      expect(rendered).to include @expense.purpose
+      expect(rendered).to include @expense.responsible
     end
 
     it "should render partial 'items/_item'" do
