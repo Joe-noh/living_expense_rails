@@ -2,56 +2,56 @@ require "rails_helper"
 
 describe "view" do
 
-  let(:record) { FactoryGirl.create :record }
+  let(:expense) { FactoryGirl.create :expense }
 
-  describe "records/index" do
+  describe "expenses/index" do
 
     before do
-      3.times { FactoryGirl.create :record }
-      @records = Record.all
-      render template: "records/index"
+      3.times { FactoryGirl.create :expense }
+      @expenses = Expense.all
+      render template: "expenses/index"
     end
 
     it "should have title" do
       expect(rendered).to include "Living Expenses"
     end
 
-    it "should render partial 'records/_record'" do
-      expect(view).to render_template partial: "_record"
+    it "should render partial 'expenses/_expense'" do
+      expect(view).to render_template partial: "_expense"
     end
   end
 
-  describe "records/_record" do
+  describe "expenses/_expense" do
 
-    before { render partial: "records/record", locals: { record: record } }
+    before { render partial: "expenses/expense", locals: { expense: expense } }
 
-    it "should render attributes of the record" do
-      expect(rendered).to include record.purpose
-      expect(rendered).to include record.responsible
+    it "should render attributes of the expense" do
+      expect(rendered).to include expense.purpose
+      expect(rendered).to include expense.responsible
     end
   end
 
-  describe "records/new" do
+  describe "expenses/new" do
 
-    before { render template: "records/new", locals: { record: record } }
+    before { render template: "expenses/new", locals: { expense: expense } }
 
-    it "should render partial 'records/_form'" do
+    it "should render partial 'expenses/_form'" do
       expect(view).to render_template partial: "_form"
     end
   end
 
-  describe "records/edit" do
+  describe "expenses/edit" do
 
-    before { render template: "records/edit", locals: { record: record } }
+    before { render template: "expenses/edit", locals: { expense: expense } }
 
-    it "should render partial 'records/_form'" do
+    it "should render partial 'expenses/_form'" do
       expect(view).to render_template partial: "_form"
     end
   end
 
-  describe "records/_form" do
+  describe "expenses/_form" do
 
-    before { render partial: "records/form", locals: { record: record } }
+    before { render partial: "expenses/form", locals: { expense: expense } }
 
     it "should have several input forms" do
       expect(rendered).to include "Purpose"
@@ -62,9 +62,9 @@ describe "view" do
     end
   end
 
-  describe "records/show" do
+  describe "expenses/show" do
 
-    before { render template: "records/show", locals: { record: record } }
+    before { render template: "expenses/show", locals: { expense: expense } }
 
     it "should render partial 'items/_item'" do
       expect(view).to render_template partial: "items/_item"

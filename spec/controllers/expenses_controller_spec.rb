@@ -1,8 +1,8 @@
 require "rails_helper"
 
-describe RecordsController do
+describe ExpensesController do
 
-  let(:record) { FactoryGirl.create :record }
+  let(:expense) { FactoryGirl.create :expense }
 
   describe "get #index" do
     it "should respond successfully" do
@@ -25,28 +25,28 @@ describe RecordsController do
 
   describe "get #edit" do
     it "should respond successfully to an ajax get request" do
-      xhr :get, :edit, id: record.id, format: "html"
+      xhr :get, :edit, id: expense.id, format: "html"
       expect(response).to be_success
     end
   end
 
   describe "post #create" do
     it "should respond successfully to an ajax post request" do
-      xhr :post, :create, record: record.attributes, id: record.id
+      xhr :post, :create, expense: expense.attributes, id: expense.id
       expect(response).to be_success
     end
   end
 
   describe "put #update" do
     it "should respond successfully to an ajax post request" do
-      xhr :put, :update, record: record.attributes, id: record.id
+      xhr :put, :update, expense: expense.attributes, id: expense.id
       expect(response).to be_success
     end
   end
 
   describe "delete #destroy" do
     it "should respond successfully to an ajax post request" do
-      xhr :delete, :destroy, id: record.id
+      xhr :delete, :destroy, id: expense.id
       expect(response).to be_success
     end
   end

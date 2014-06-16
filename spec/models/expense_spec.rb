@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe Record do
-  let(:record) { FactoryGirl.create(:record) }
+describe Expense do
+  let(:expense) { FactoryGirl.create(:expense) }
 
-  subject { record }
+  subject { expense }
 
   %i(id purpose responsible payday in_out items).each do |method|
     it { should respond_to method }
@@ -11,8 +11,8 @@ describe Record do
 
   describe "purpose" do
     it "should not be blank" do
-      record.purpose = " "
-      expect(record).not_to be_valid
+      expense.purpose = " "
+      expect(expense).not_to be_valid
     end
   end
 
@@ -22,13 +22,13 @@ describe Record do
       abnormals = ["john doe", "John", "123john", "  "]
 
       normals.each do |name|
-        record.responsible = name
-        expect(record).to be_valid
+        expense.responsible = name
+        expect(expense).to be_valid
       end
 
       abnormals.each do |name|
-        record.responsible = name
-        expect(record).not_to be_valid
+        expense.responsible = name
+        expect(expense).not_to be_valid
       end
     end
   end
@@ -39,13 +39,13 @@ describe Record do
       abnormals = ["outgo", :incoming]
 
       normals.each do |in_out|
-        record.in_out = in_out
-        expect(record).to be_valid
+        expense.in_out = in_out
+        expect(expense).to be_valid
       end
 
       abnormals.each do |in_out|
-        record.in_out = in_out
-        expect(record).not_to be_valid
+        expense.in_out = in_out
+        expect(expense).not_to be_valid
       end
     end
   end
