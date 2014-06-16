@@ -1,0 +1,6 @@
+%p= @expense.purpose
+%p= @expense.responsible
+%p= @expense.payday
+- @expense.items.each do |item|
+  = render item
+= link_to 'Delete', expense_path(@expense), method: :delete, data: { confirm: 'Sure ??' }
