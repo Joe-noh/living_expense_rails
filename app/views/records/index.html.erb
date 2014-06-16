@@ -1,9 +1,0 @@
-<h1>Living Expenses</h1>
-
-<% @records.each do |record| %>
-  <%= render record %>
-<% end %>
-
-<%= link_to "New", new_record_path, remote: true, :'data-type' => :html, id: "new_record_button" %>
-
-<div id="modal"></div>

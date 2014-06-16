@@ -1,4 +1,4 @@
-class Record < ActiveRecord::Base
+class Expense < ActiveRecord::Base
   has_many :items
   accepts_nested_attributes_for :items
 

@@ -12,7 +12,7 @@ describe Item do
   shared_examples_for "natural number" do
   end
 
-  %i(id record_id name count unit_price).each do |method|
+  %i(id expense name count unit_price).each do |method|
     it { should respond_to method }
   end
 

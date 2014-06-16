@@ -3,6 +3,6 @@ FactoryGirl.define do
     name       "onion"
     count      3
     unit_price 100
-    record     :record
+    expense    :expense
   end
 end

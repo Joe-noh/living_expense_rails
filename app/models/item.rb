@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  belongs_to :record
+  belongs_to :expense
 
   validates :name,       presence: true
   validates :count,      numericality: { greater_than: 0 }
