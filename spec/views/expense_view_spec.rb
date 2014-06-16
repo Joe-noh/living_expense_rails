@@ -66,6 +66,11 @@ describe "view" do
 
     before { render template: "expenses/show", locals: { expense: expense } }
 
+    it "should contain expense information" do
+      expect(rendered).to include expense.purpose
+      expect(rendered).to include expense.responsible
+    end
+
     it "should render partial 'items/_item'" do
       expect(view).to render_template partial: "items/_item"
     end

@@ -1,5 +1,7 @@
 class ExpensesController < ApplicationController
 
+  respond_to :html
+
   def index
     @expenses = Expense.all
   end
@@ -8,37 +10,22 @@ class ExpensesController < ApplicationController
     @expense = Expense.new
     @expense.items.build
 
-    respond_to do |format|
-      if request.xhr?
-        format.html { render "new", locals: { expense: @expense } }
-      end
-    end
+    render "new", locals: { expense: @expense }
   end
 
   def edit
     @expense = Expense.find(params[:id])
 
-    respond_to do |format|
-      if request.xhr?
-        format.html { render "new", locals: { expense: @expense } }
-      end
-    end
+    render "edit", locals: { expense: @expense }
   end
 
   def create
     @expense = Expense.new(expense_params)
 
     if @expense.save
-      status = "success"
-      html   = render_to_string partial: "expense", locals: { expense: @expense }
+      redirect_to root_path
     else
-      status = "error"
-    end
-
-    respond_to do |format|
-      if request.xhr?
-        format.json { render json: { status: status, data: @expense, html: html } }
-      end
+      render action: 'new'
     end
   end
 
@@ -46,16 +33,9 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
 
     if @expense.update_attributes(expense_params)
-      status = "success"
-      html   = render_to_string partial: "expense", locals: { expense: @expense }
+      redirect_to root_path
     else
-      status = "error"
-    end
-
-    respond_to do |format|
-      if request.xhr?
-        format.json { render json: { status: status, data: @expense, html: html } }
-      end
+      render action: "edit"
     end
   end
 
@@ -63,11 +43,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
     @expense.destroy
 
-    respond_to do |format|
-      if request.xhr?
-        format.json { render json: { status: "success" } }
-      end
-    end
+    redirect_to root_path
   end
 
   private

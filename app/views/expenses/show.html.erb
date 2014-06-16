@@ -1,4 +1,6 @@
 <p><%= expense.purpose %></p>
+<p><%= expense.responsible %></p>
+<p><%= expense.payday %></p>
 <% expense.items.each do |item| %>
   <%= render item %>
 <% end %>
