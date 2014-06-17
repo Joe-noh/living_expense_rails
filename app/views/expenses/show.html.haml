@@ -35,7 +35,9 @@
             %p.form-control-static= "&times;&nbsp;".html_safe + item.count.to_s
 
   .row
-    .col-sm-1.col-sm-offset-9
-      = link_to 'Edit', edit_expense_path(@expense), class: 'btn btn-default btn-lg'
+    .col-sm-1.col-sm-offset-10
+      = link_to edit_expense_path(@expense), class: 'btn btn-default btn-lg' do
+        %span.glyphicon.glyphicon-pencil
     .col-sm-1
-      = link_to 'Delete', expense_path(@expense), method: :delete, data: { confirm: 'Sure ??' }, class: 'btn btn-danger btn-lg'
+      = link_to expense_path(@expense), method: :delete, data: { confirm: 'Sure ??' }, class: 'btn btn-danger btn-lg' do
+        %span.glyphicon.glyphicon-trash
