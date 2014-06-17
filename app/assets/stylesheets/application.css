@@ -11,10 +11,19 @@
  * file per style scope.
  *
  *
- *= require_self
  *= require lumen
+ *= require_self
  */
 
 body {
   padding-top: 70px;
+}
+
+.balance.red-ink p {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.balance.black-ink p {
+  color: #2980b9;
 }
