@@ -14,4 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery_nested_form
-//= require_tree .
+//= require lumen
+
+$(function () {
+  $('.expense_row').on('click', function () {
+    window.location = $(this).data('href');
+  });
+});
