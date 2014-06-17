@@ -66,9 +66,5 @@ describe "view" do
       expect(rendered).to include @expense.purpose
       expect(rendered).to include @expense.responsible
     end
-
-    it "should render partial 'items/_item'" do
-      expect(view).to render_template partial: "items/_item"
-    end
   end
 end

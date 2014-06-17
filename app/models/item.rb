@@ -6,4 +6,8 @@ class Item < ActiveRecord::Base
   validates :count,      numericality: { only_integer: true }
   validates :unit_price, numericality: { greater_than: 0 }
   validates :unit_price, numericality: { only_integer: true }
+
+  def amount_total
+    self.unit_price * self.count
+  end
 end

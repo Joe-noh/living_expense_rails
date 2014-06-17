@@ -56,4 +56,11 @@ describe Item do
       end
     end
   end
+
+  describe "amount_total" do
+    it "should return sum" do
+      expect(FactoryGirl.build(:item_300).amount_total).to eql 300
+      expect(FactoryGirl.build(:item_500).amount_total).to eql 500
+    end
+  end
 end

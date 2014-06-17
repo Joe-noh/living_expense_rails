@@ -3,8 +3,6 @@ require 'rails_helper'
 describe Expense do
   let(:expense) { FactoryGirl.create(:expense) }
 
-  subject { expense }
-
   %i(id purpose responsible payday in_out items).each do |method|
     it { should respond_to method }
   end
@@ -46,6 +44,49 @@ describe Expense do
       abnormals.each do |in_out|
         expense.in_out = in_out
         expect(expense).not_to be_valid
+      end
+    end
+  end
+
+  describe "instance method amount_total" do
+    it "should return sum of all amount of money of the expense" do
+      exp = Expense.new
+      exp.items.build(name: "Potato", unit_price: 100, count: 2)
+      exp.items.build(name: "Tomato", unit_price: 120, count: 1)
+
+      expect(exp.amount_total).to eql 320
+    end
+  end
+
+  describe "class methods" do
+
+    before do
+      Expense.delete_all
+    end
+
+    describe "amount_total" do
+      it "should return sum of money" do
+        FactoryGirl.create(:expense_800)
+        FactoryGirl.create(:expense_800)
+        FactoryGirl.create(:expense_800)
+        FactoryGirl.create(:expense_800, in_out: 'incoming')
+        expect(Expense.balance).to eql -1600
+
+        FactoryGirl.create(:expense_800, in_out: 'incoming')
+        expect(Expense.balance).to eql -800
+      end
+    end
+
+    describe "red?" do
+      it "should detect a deficit" do
+        FactoryGirl.create(:expense_800)
+        expect(Expense.red?).to be_truthy
+
+        FactoryGirl.create(:expense_800, in_out: 'incoming')
+        expect(Expense.red?).to be_falsey
+
+        FactoryGirl.create(:expense_800, in_out: 'incoming')
+        expect(Expense.red?).to be_falsey
       end
     end
   end
