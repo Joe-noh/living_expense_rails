@@ -48,13 +48,24 @@ describe Expense do
     end
   end
 
-  describe "instance method amount_total" do
-    it "should return sum of all amount of money of the expense" do
-      exp = Expense.new
-      exp.items.build(name: "Potato", unit_price: 100, count: 2)
-      exp.items.build(name: "Tomato", unit_price: 120, count: 1)
+  describe "instance methods" do
 
-      expect(exp.amount_total).to eql 320
+    before :all do
+      @exp = Expense.new
+      @exp.items.build(name: "Potato", unit_price: 100, count: 2)
+      @exp.items.build(name: "Tomato", unit_price: 120, count: 1)
+    end
+
+    describe "amount_total" do
+      it "should return sum of all amount of money of the expense" do
+        expect(@exp.amount_total).to eql 320
+      end
+    end
+
+    describe "amount_total_to_s" do
+      it "should return human readable notation" do
+        expect(@exp.amount_total_to_s).to eql '- 320 Yen'
+      end
     end
   end
 
