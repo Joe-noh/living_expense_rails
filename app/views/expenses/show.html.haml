@@ -1,30 +1,30 @@
 %form.form-horizontal
   .well
     %fieldset
-      %legend Summary
+      %legend SUMMARY
       .form-group
-        %label.col-sm-2.control-label Purpose
+        %label.col-sm-2.control-label PURPOSE
         .col-sm-9
           %p.form-control-static= @expense.purpose
 
       .form-group
-        %label.col-sm-2.control-label Responsible
+        %label.col-sm-2.control-label RESPONSIBLE
         .col-sm-9
           %p.form-control-static= @expense.responsible
 
       .form-group
-        %label.col-sm-2.control-label Payday
+        %label.col-sm-2.control-label PAYDAY
         .col-sm-9
           %p.form-control-static= @expense.payday
 
       .form-group
-        %label.col-sm-2.control-label In Out
+        %label.col-sm-2.control-label IN OUT
         .col-sm-9
           %p.form-control-static= @expense.in_out
 
   .well
     %fieldset
-      %legend Items
+      %legend ITEMS
       - @expense.items.each do |item|
         .form-group
           .col-sm-3.col-sm-offset-2
