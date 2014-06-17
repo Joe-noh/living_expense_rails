@@ -1,6 +1,41 @@
-%p= @expense.purpose
-%p= @expense.responsible
-%p= @expense.payday
-- @expense.items.each do |item|
-  = render item
-= link_to 'Delete', expense_path(@expense), method: :delete, data: { confirm: 'Sure ??' }
+%form.form-horizontal
+  .well
+    %fieldset
+      %legend Summary
+      .form-group
+        %label.col-sm-2.control-label Purpose
+        .col-sm-9
+          %p.form-control-static= @expense.purpose
+
+      .form-group
+        %label.col-sm-2.control-label Responsible
+        .col-sm-9
+          %p.form-control-static= @expense.responsible
+
+      .form-group
+        %label.col-sm-2.control-label Payday
+        .col-sm-9
+          %p.form-control-static= @expense.payday
+
+      .form-group
+        %label.col-sm-2.control-label In Out
+        .col-sm-9
+          %p.form-control-static= @expense.in_out
+
+  .well
+    %fieldset
+      %legend Items
+      - @expense.items.each do |item|
+        .form-group
+          .col-sm-3.col-sm-offset-2
+            %p.form-control-static= item.name
+          .col-sm-3
+            %p.form-control-static= "&yen;&nbsp;".html_safe + item.unit_price.to_s
+          .col-sm-2
+            %p.form-control-static= "&times;&nbsp;".html_safe + item.count.to_s
+
+  .row
+    .col-sm-1.col-sm-offset-9
+      = link_to 'Edit', edit_expense_path(@expense), class: 'btn btn-default btn-lg'
+    .col-sm-1
+      = link_to 'Delete', expense_path(@expense), method: :delete, data: { confirm: 'Sure ??' }, class: 'btn btn-danger btn-lg'
