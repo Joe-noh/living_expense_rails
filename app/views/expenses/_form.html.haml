@@ -1,52 +1,55 @@
 = nested_form_for(expense, html: { class: 'form-horizontal' }) do |f|
   .well
     %fieldset
-      %legend Summary
+      %legend SUMMARY
       .form-group
-        = f.label :purpose, class: 'col-sm-2 control-label'
+        = f.label :purpose, 'PURPOSE', class: 'col-sm-2 control-label'
         .col-sm-9
           = f.text_field :purpose, class: 'form-control', required: true
 
       .form-group
-        = f.label :responsible, class: 'col-sm-2 control-label'
+        = f.label :responsible, 'RESPONSIBLE', class: 'col-sm-2 control-label'
         .col-sm-9
           = f.text_field :responsible, class: 'form-control', required: true
 
       .form-group
-        = f.label :payday, class: 'col-sm-2 control-label'
+        = f.label :payday, 'PAYDAY', class: 'col-sm-2 control-label'
         .col-sm-9
           = f.date_field :payday, class: 'form-control', value: expense.payday || Date.today
 
       .form-group
-        = f.label :in_out, class: 'col-sm-2 control-label'
+        = f.label :in_out, 'IN OUT', class: 'col-sm-2 control-label'
         .col-sm-9
           = f.select :in_out, ['outgoing', 'incoming'], {}, class: 'form-control'
 
   .well
     %fieldset
-      %legend Items
+      %legend ITEMS
       #item_forms_container
         = f.fields_for(:items) do |item_f|
           .form-group
             .col-sm-3.col-sm-offset-2
               = item_f.label :name, class: 'sr-only'
-              = item_f.text_field :name, class: 'form-control', placeholder: 'Item Name'
+              = item_f.text_field :name, class: 'form-control', placeholder: 'ITEM NAME'
 
             .col-sm-3
               = item_f.label :unit_price, class: 'sr-only'
               .input-group
                 %span.input-group-addon &yen;
-                = item_f.number_field :unit_price, class: 'form-control', placeholder: 'Price', min: 1
+                = item_f.number_field :unit_price, class: 'form-control', placeholder: 'UNIT PRICE', min: 1
 
             .col-sm-2
               = item_f.label :count, class: 'sr-only'
-              = item_f.number_field :count, class: 'form-control', placeholder: 'Count', min: 1
+              = item_f.number_field :count, class: 'form-control', placeholder: 'COUNT', min: 1
 
             .col-sm-2
-              = item_f.link_to_remove 'Remove', class: 'btn btn-warning'
+              = item_f.link_to_remove class: 'btn btn-warning' do
+                %span.glyphicon.glyphicon-remove
 
   .row
-    .col-sm-2.col-sm-offset-8
-      = f.link_to_add 'One more item', :items, data: { target: '#item_forms_container' }, class: 'btn btn-default btn-lg'
-    .col-sm-2
-      = f.submit 'Save', class: 'btn btn-primary btn-lg'
+    .col-sm-1.col-sm-offset-10
+      = f.link_to_add :items, data: { target: '#item_forms_container' }, class: 'btn btn-default btn-lg' do
+        %span.glyphicon.glyphicon-plus
+    .col-sm-1
+      = button_tag(type: 'submit', class: 'btn btn-success btn-lg') do
+        %span.glyphicon.glyphicon-ok
