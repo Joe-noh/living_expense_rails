@@ -14,3 +14,7 @@
  *= require_self
  *= require lumen
  */
+
+body {
+  padding-top: 70px;
+}

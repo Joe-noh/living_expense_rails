@@ -6,4 +6,10 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          = link_to 'Living Expenses', root_path, class: 'navbar-brand'
+
+    .container
+      = yield

@@ -12,10 +12,6 @@ describe "view" do
       render template: "expenses/index"
     end
 
-    it "should have title" do
-      expect(rendered).to include "Living Expenses"
-    end
-
     it "should render partial 'expenses/_expense'" do
       expect(view).to render_template partial: "_expense"
     end
