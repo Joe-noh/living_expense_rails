@@ -7,4 +7,24 @@ class Expense < ActiveRecord::Base
                           format: { with: /\A[a-z][a-z0-9]*\z/ }
   validates :in_out,      presence: true,
                           inclusion: { in: ["outgoing", "incoming"], message: "%{value} is invalid" }
+
+  def amount_total
+    self.items.inject(0) do |sum, item|
+      sum + item.amount_total
+    end
+  end
+
+  def income?
+    self.in_out == 'incoming'
+  end
+
+  def self.balance
+    self.all.inject(0) do |sum, expense|
+      sum + (expense.income? ? 1 : -1) * expense.amount_total
+    end
+  end
+
+  def self.red?
+    self.balance < 0
+  end
 end

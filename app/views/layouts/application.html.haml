@@ -9,7 +9,19 @@
     %nav.navbar.navbar-default.navbar-fixed-top
       .container
         .navbar-header
+          %button.navbar-toggle{type: 'button', 'data-toggle' => 'collapse', 'data-target' => '#nav-menu'}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
           = link_to 'Living Expenses', root_path, class: 'navbar-brand'
+
+        .collapse.navbar-collapse#nav-menu
+          %ul.nav.navbar-nav.navbar-right
+            %li.balance{class: Expense.red? ? 'red-ink' : 'black-ink'}
+              %p.navbar-text= "#{Expense.balance} Yen"
+            %li
+              = button_to new_expense_path, class: 'btn btn-primary navbar-btn', method: 'get' do
+                %span New
 
     .container
       = yield
