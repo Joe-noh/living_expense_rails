@@ -1,7 +1,7 @@
 %tr.expense_row{'data-href' => expense_url(expense)}
   %td= expense.purpose
   %td
-    .text-right= (expense.income? ? '+ ' : '- ') + expense.amount_total.to_s + ' Yen'
+    .text-right= expense.amount_total_to_s
   %td
     .text-right= expense.payday
   %td

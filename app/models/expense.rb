@@ -14,6 +14,10 @@ class Expense < ActiveRecord::Base
     end
   end
 
+  def amount_total_to_s
+    (self.income? ? '+ ' : '- ') + "#{self.amount_total} Yen"
+  end
+
   def income?
     self.in_out == 'incoming'
   end
