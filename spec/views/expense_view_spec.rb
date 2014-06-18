@@ -50,9 +50,9 @@ describe "view" do
     before { render partial: "expenses/form", locals: { expense: @expense } }
 
     it "should have several input forms" do
-      expect(rendered).to include "Purpose"
-      expect(rendered).to include "Responsible"
-      expect(rendered).to include "Payday"
+      expect(rendered).to include "PURPOSE"
+      expect(rendered).to include "RESPONSIBLE"
+      expect(rendered).to include "PAYDAY"
 
       expect(rendered.scan(/<input/).size).to be >= 4
     end

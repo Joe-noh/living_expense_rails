@@ -8,13 +8,13 @@ RSpec.describe "CreateNewExpenses", :type => :request do
     before do
       visit new_expense_path
 
-      fill_in 'Purpose',     with: expense.purpose
-      fill_in 'Responsible', with: expense.responsible
-      fill_in 'Payday',      with: expense.payday
+      fill_in 'PURPOSE',     with: expense.purpose
+      fill_in 'RESPONSIBLE', with: expense.responsible
+      fill_in 'PAYDAY',      with: expense.payday
     end
 
     it 'save new expense to database' do
-      expect { click_button 'Save' }.to change(Expense, :count).by 1
+      expect { find("button[class*='btn-success'][type='submit']").click }.to change(Expense, :count).by 1
     end
 
     context 'with an item' do
@@ -27,11 +27,11 @@ RSpec.describe "CreateNewExpenses", :type => :request do
       end
 
       it 'save an expense' do
-        expect { click_button 'Save' }.to change(Item, :count).by 1
+        expect { find("button[class*='btn-success'][type='submit']").click }.to change(Item, :count).by 1
       end
 
       it 'save an item' do
-        expect { click_button 'Save' }.to change(Expense, :count).by 1
+        expect { find("button[class*='btn-success'][type='submit']").click }.to change(Expense, :count).by 1
       end
     end
   end
