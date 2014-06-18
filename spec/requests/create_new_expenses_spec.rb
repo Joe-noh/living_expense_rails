@@ -8,9 +8,9 @@ RSpec.describe "CreateNewExpenses", :type => :request do
     before do
       visit new_expense_path
 
-      fill_in 'PURPOSE',     with: expense.purpose
-      fill_in 'RESPONSIBLE', with: expense.responsible
-      fill_in 'PAYDAY',      with: expense.payday
+      fill_in 'PURPOSE',           with: expense.purpose
+      select  expense.responsible, from: 'RESPONSIBLE'
+      fill_in 'PAYDAY',            with: expense.payday
     end
 
     it 'save new expense to database' do
