@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root "expenses#index"
 
-  resources :expenses, except: [:index]
+  resources :expenses, except: [:index] do
+    get 'stat', on: :collection
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
