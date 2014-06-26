@@ -46,6 +46,14 @@ class ExpensesController < ApplicationController
     redirect_to root_path
   end
 
+  def stat
+    integral = 0
+    @series = Expense.all.each_with_object({}) { |expense, hash|
+      integral += (expense.income? ? 1 : -1) * expense.amount_total
+      hash[expense.payday] = integral
+    }
+  end
+
   private
 
   def expense_params
