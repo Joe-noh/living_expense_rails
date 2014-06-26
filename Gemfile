@@ -7,6 +7,8 @@ gem 'net-ldap'
 
 gem 'nested_form'
 
+gem 'chartkick'
+
 gem 'twitter-bootswatch-rails'
 gem 'twitter-bootswatch-rails-helpers'
 
