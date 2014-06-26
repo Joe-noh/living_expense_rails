@@ -42,6 +42,11 @@ describe "routing" do
                                              action:     "new")
   end
 
+  it "should route /expenses/stat to expenses#stat" do
+    expect(get: "/expenses/stat").to route_to(controller: "expenses",
+                                              action: "stat")
+  end
+
   it "should not route to items" do
     expect(get:  "/items"       ).not_to be_routable
     expect(get:  "/items/1"     ).not_to be_routable
