@@ -8,6 +8,8 @@ class Expense < ActiveRecord::Base
   validates :in_out,      presence: true,
                           inclusion: { in: ["outgoing", "incoming"], message: "%{value} is invalid" }
 
+  default_scope { order('payday') }
+
   def amount_total
     self.items.inject(0) do |sum, item|
       sum + item.amount_total
