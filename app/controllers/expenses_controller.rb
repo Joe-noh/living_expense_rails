@@ -52,6 +52,10 @@ class ExpensesController < ApplicationController
       integral += (expense.income? ? 1 : -1) * expense.amount_total
       hash[expense.payday] = integral
     }
+
+    @num_responsible = Expense.all.group_by(&:responsible).map { |name, expenses|
+      [name, expenses.count]
+    }
   end
 
   private
